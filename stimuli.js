@@ -7,14 +7,13 @@ const PRACTICE = "PRACTICE";
 const TARGET = "TARGET";
 
 // name for lists, in this case one list, one item in the list
-const LISTS = ["default"];
+const LISTS = [
+    "1",
+    "2",
+    "3",
+    "4"
+];
 
-// In case of more complex design, the above could be, for example:
-
-// const LISTS = [
-//     "my_first_list",
-//     "my_second_list"
-// ];
 
 const PRACTICE_ITEMS = [
     {
@@ -43,9 +42,35 @@ const LIST_1 = [
     },
 ];
 
+const LIST_2 = []; // To be filled in.
+const LIST_3 = []; // To be filled in.
+const LIST_4 = []; // To be filled in.
+
 const TEST_ITEMS = [
-    {list_name: LISTS[0], table: LIST_1}
+    {list_name: LISTS[0], table: LIST_1},
+    {list_name: LISTS[1], table: LIST_2},
+    {list_name: LISTS[2], table: LIST_3},
+    {list_name: LISTS[3], table: LIST_4}
 ];
+
+/**
+ * finds a list base on a group
+ *
+ * @param {int} listnum: the number of the desired list
+ *
+ * @returns {array<string>} A list of test items.
+ */
+function findList(listnum) {
+    const VALID = [1,2,3,4];
+
+    if (!VALID.includes(listnum)) {
+        throw new Error(
+            `${findList.name}: listnum is not valid expected one of: ${VALID}`
+        );
+    }
+
+    return TEST_ITEMS[listnum - 1];
+}
 
 // If there were two lists to choose from:
 
