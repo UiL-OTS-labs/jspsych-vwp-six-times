@@ -21,6 +21,7 @@ const PRACTICE_ITEMS = [
         item_type: PRACTICE,
         image: './img/ChurchTableNecklaceRing.jpg',
         sound: './sounds/BlinktEenKettingGras.wav',
+        bias_onset: 1234, // After 1234 ms the sentence should cause a bias in looking behavior
         expected_answer: true
     },
 ];
@@ -31,6 +32,7 @@ const LIST_1 = [
         item_type: TARGET,
         image: './img/TaartPlantPlasDiamant.jpg',
         sound: './sounds/LigtEenPlasVeld.wav',
+        bias_onset: 1234, // After 1234 ms the sentence should cause a bias in looking behavior
         expected_answer: false
     },
     {
@@ -38,6 +40,7 @@ const LIST_1 = [
         item_type: TARGET,
         image: './img/BookCraddlePlantWheel.jpg',
         sound: './sounds/LigtEenWielKamer.wav',
+        bias_onset: 1234, // After 1234 ms the sentence should cause a bias in looking behavior
         expected_answer: true
     },
 ];

@@ -185,6 +185,7 @@ let trial = {
         data.sound = jsPsych.timelineVariable('sound');
         data.answer = data.response.toLowerCase() == getKeys().yes.toLowerCase();
         data.correct = data.answer == jsPsych.timelineVariable('expected_answer');
+        data.bias_onset = jsPsych.timelineVariable('bias_onset');
     },
     css_classes: ['no-cursor']
 }
