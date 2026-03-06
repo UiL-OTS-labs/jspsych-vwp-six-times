@@ -163,7 +163,7 @@ let begin_practice = {
 let begin_test = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: `<p>Instructions for the test phase go here</p>
-                        <p>Press any key to start.</p>`
+               <p>Press any key to start.</p>`
 }
 
 
@@ -194,7 +194,7 @@ let start_screen = {
     type: jsPsychHtmlButtonResponse,
     stimulus: function() {
         return "<div class='instruction' >" +
-            "<p>Initial instructions go here</p></div>";
+               "<p>Initial instructions go here</p></div>";
     },
     choices: [OK_BUTTON_TEXT],
     response_ends_trial: true
@@ -202,13 +202,18 @@ let start_screen = {
 
 let feedback_screen = {
     type: jsPsychSurveyText,
+    data_saved: undefined, // true or false after upload succeeds/fails
     preamble: '<p>The experiment is now complete. <strong>Please do not close this window yet.</strong></p>',
     questions: [
-        {prompt: 'Do you have any further comments or feedback about the experiment? If not, please leave empty',
-            rows: 5},
+        {
+            prompt: 'Do you have any further comments or feedback about the experiment? If not, please leave empty',
+            rows: 5
+        },
     ],
     on_load: function() {
-        uil.saveJson(jsPsych.data.get().json(), ACCESS_KEY);
+        uil.saveJson(jsPsych.data.get().json(), ACCESS_KEY)
+            .then(() => feedback_screen.data_saved = true)
+            .catch(() => feedback_screen.data_saved = false);
     },
     on_finish: function(data) {
         let payload = {
@@ -218,6 +223,31 @@ let feedback_screen = {
         uil.saveJson(JSON.stringify(payload), ACCESS_KEY);
     }
 };
+
+// Is ran when the data isn't saved correctly
+let save_local = {
+    type: jsPsychHtmlButtonResponse,
+    name: "",
+    stimulus: function () {
+        let msg = `<h1>Unable to save data</h1>`;
+        msg += `<p>The data is saved in your downloads folder: as <b>${save_local.name}</b></p>`;
+        msg += `<p>Please send this file to the instructor</p>`;
+        msg += `<p>Press the button to continue</p>`;
+
+        return msg
+    },
+    on_load : function () {
+        save_local.name = "UnsavedData.json"
+        jsPsych.data.get("json", save_local.name).localSave();
+    }
+}
+
+let test_manual_save_data = {
+    timeline : [ save_local ],
+    conditional_function: function () {
+        return feedback_screen.data_saved !== false;
+    }
+}
 
 let end_experiment = {
     type : jsPsychHtmlKeyboardResponse,
@@ -268,59 +298,64 @@ let participant_keyboard_control_start = {
 };
 
 function getTimeline(stimuli) {
+
+    let short_version = getQueryStringParameter("short");
     let timeline = [];
 
     timeline.push(preload);
     timeline.push(start_screen);
 
-    timeline.push(consent_procedure);
-    timeline.push(survey_procedure);
+    if (! short_version) {
+        timeline.push(consent_procedure);
+        timeline.push(survey_procedure);
 
-    timeline.push(sound_test_instructions);
-    timeline.push(test_audio_looped);
+        timeline.push(sound_test_instructions);
+        timeline.push(test_audio_looped);
 
-    // kb layout
-    timeline.push(select_keyboard_layout);
+        // kb layout
+        timeline.push(select_keyboard_layout);
 
-    // kb important keys (keyboard.js)
-    timeline.push(keyboard_set_key_left_procedure);
-    timeline.push(keyboard_set_key_right_procedure);
+        // kb important keys (keyboard.js)
+        timeline.push(keyboard_set_key_left_procedure);
+        timeline.push(keyboard_set_key_right_procedure);
 
-    timeline.push(participant_keyboard_control_start);
+        timeline.push(participant_keyboard_control_start);
 
-    timeline.push(browser_data);
-    timeline.push(camera_instructions);
-    timeline.push(init_camera);
-    timeline.push(enter_fullscreen);
+        timeline.push(browser_data);
+        timeline.push(camera_instructions);
+        timeline.push(init_camera);
+        timeline.push(enter_fullscreen);
 
-    timeline.push(calibration_instructions);
-    timeline.push(calibration);
-    timeline.push(validation_instructions);
-    timeline.push(validation);
-    timeline.push(hide_dot);
-    timeline.push(recalibrate);
-    timeline.push(calibration_done);
+        timeline.push(calibration_instructions);
+        timeline.push(calibration);
+        timeline.push(validation_instructions);
+        timeline.push(validation);
+        timeline.push(hide_dot);
+        timeline.push(recalibrate);
+        timeline.push(calibration_done);
 
-    timeline.push(begin_practice);
-    let practice = {
-        timeline: [
-            trial
-        ],
-        timeline_variables: getPracticeItems().table,
-        randomize_order: false,
-    };
-    timeline.push(practice);
+        timeline.push(begin_practice);
+        let practice = {
+            timeline: [
+                trial
+            ],
+            timeline_variables: getPracticeItems().table,
+            randomize_order: false,
+        };
+        timeline.push(practice);
 
-    timeline.push(begin_test);
-    let test = {
-        timeline: [
-            trial,
-        ],
-        timeline_variables: stimuli.table
+        timeline.push(begin_test);
+        let test = {
+            timeline: [
+                trial,
+            ],
+            timeline_variables: stimuli.table
+        }
+        timeline.push(test);
     }
-    timeline.push(test);
 
     timeline.push(feedback_screen);
+    timeline.push(test_manual_save_data);
     timeline.push(end_experiment);
 
     return timeline;
@@ -342,9 +377,12 @@ function main() {
         session_id: session_id
     });
 
+    // TODO Remove this
+    uil.useCustomServer("http://localhost:8001/api/");
+
     // Option 1: client side randomization:
-    let stimuli = pickRandomList();
-    kickOffExperiment(stimuli, getTimeline(stimuli));
+    // let stimuli = pickRandomList();
+    // kickOffExperiment(stimuli, getTimeline(stimuli));
 
     // Option 2: server side balancing:
     // Make sure you have matched your groups on the dataserver with the
@@ -353,10 +391,11 @@ function main() {
     // stimuli.js).
     // Hence, unless you change lists here, you should created matching
     // groups there.
-    // uil.session.start(ACCESS_KEY, (group_name) => {
-    //     let stimuli = findList(group_name);
-    //     kickOffExperiment(stimuli, getTimeline(stimuli));
-    // });
+    uil.session.start(ACCESS_KEY, (group_name) => {
+        
+        let stimuli = findList(getListNum());
+        kickOffExperiment(stimuli, getTimeline(stimuli));
+    });
 }
 
 // this function will eventually run the jsPsych timeline
