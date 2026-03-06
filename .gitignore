@@ -1,3 +1,6 @@
 .log
 
+# vim tempfiles
+*.sw[op]
+
 TAGS
