@@ -232,14 +232,15 @@ let save_local = {
         let msg = `<h1>Unable to save data</h1>`;
         msg += `<p>The data is saved in your downloads folder: as <b>${save_local.name}</b></p>`;
         msg += `<p>Please send this file to the instructor</p>`;
-        msg += `<p>Press the button to continue</p>`;
+        msg += `<p>Press the ok button to continue</p>`;
 
         return msg
     },
     on_load : function () {
         save_local.name = "UnsavedData.json"
-        jsPsych.data.get("json", save_local.name).localSave();
-    }
+        jsPsych.data.get().localSave("json", save_local.name);
+    },
+    choices: [OK_BUTTON_TEXT],
 }
 
 let test_manual_save_data = {
