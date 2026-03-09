@@ -301,13 +301,14 @@ let participant_keyboard_control_start = {
 
 function getTimeline(stimuli) {
 
-    let short_version = getQueryStringParameter("short");
+    let short_version = getShort();
+
     let timeline = [];
 
     timeline.push(preload);
     timeline.push(start_screen);
 
-    if (! short_version) {
+    if (!short_version) {
         timeline.push(consent_procedure);
         timeline.push(survey_procedure);
 
@@ -322,8 +323,11 @@ function getTimeline(stimuli) {
         timeline.push(keyboard_set_key_right_procedure);
 
         timeline.push(participant_keyboard_control_start);
+    }
 
-        timeline.push(browser_data);
+    timeline.push(browser_data);
+
+    if (!short_version) {
         timeline.push(camera_instructions);
         timeline.push(init_camera);
         timeline.push(enter_fullscreen);
@@ -335,26 +339,26 @@ function getTimeline(stimuli) {
         timeline.push(hide_dot);
         timeline.push(recalibrate);
         timeline.push(calibration_done);
-
-        timeline.push(begin_practice);
-        let practice = {
-            timeline: [
-                trial
-            ],
-            timeline_variables: getPracticeItems().table,
-            randomize_order: false,
-        };
-        timeline.push(practice);
-
-        timeline.push(begin_test);
-        let test = {
-            timeline: [
-                trial,
-            ],
-            timeline_variables: stimuli.table
-        }
-        timeline.push(test);
     }
+
+    timeline.push(begin_practice);
+    let practice = {
+        timeline: [
+            trial
+        ],
+        timeline_variables: getPracticeItems().table,
+        randomize_order: false,
+    };
+    timeline.push(practice);
+
+    timeline.push(begin_test);
+    let test = {
+        timeline: [
+            trial,
+        ],
+        timeline_variables: stimuli.table
+    }
+    timeline.push(test);
 
     timeline.push(feedback_screen);
     timeline.push(test_manual_save_data);
@@ -379,7 +383,8 @@ function main() {
         session_id: session_id
     });
 
-    // TODO Remove this
+    // // TODO Remove this
+    // // Enable test at localhost:8001
     uil.useCustomServer("http://localhost:8001/api/");
 
     // Option 1: client side randomization:
