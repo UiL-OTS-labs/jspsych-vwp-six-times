@@ -153,7 +153,8 @@ let trial = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: jsPsych.timelineVariable('sound'),
     prompt: () => '<img id="image-stimulus" src="'+jsPsych.timelineVariable('image')+'"/>',
-    choices: () => Object.values(getKeys()),
+    choices: [],
+    trial_ends_after_audio: true,
     extensions: [
         {
             type: jsPsychExtensionWebgazer,
@@ -165,7 +166,7 @@ let trial = {
         data.item_type = jsPsych.timelineVariable('item_type');
         data.image = jsPsych.timelineVariable('image');
         data.sound = jsPsych.timelineVariable('sound');
-        data.answer = data.response.toLowerCase() == getKeys().yes.toLowerCase();
+        data.answer = data.response;
         data.correct = data.answer == jsPsych.timelineVariable('expected_answer');
         data.bias_onset = jsPsych.timelineVariable('bias_onset');
     },
@@ -254,27 +255,27 @@ function getKeys()
     };
 }
 
-let participant_keyboard_control_start = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: function(){
-        return `<div class="instruction">
-            <p>Instruct the participant about questions and how to answer using the keyboard</p>
-            <p>
-                Hit your <kbd>${getKeys().yes}</kbd> key (<i>'yes'</i>) to start.
-            </p>
-            </div>`;
-    },
-    choices: function(){
-        return [getKeys().yes];
-    },
-    trial_ends_after_response: true,
-    post_trial_gap: 300,
-    on_finish : function(data) {
-        if (typeof data.rt === "number") {
-            data.rt = Math.round(data.rt);
-        }
-    }
-};
+// let participant_keyboard_control_start = {
+//     type: jsPsychHtmlKeyboardResponse,
+//     stimulus: function(){
+//         return `<div class="instruction">
+//             <p>Instruct the participant about questions and how to answer using the keyboard</p>
+//             <p>
+//                 Hit your <kbd>${getKeys().yes}</kbd> key (<i>'yes'</i>) to start.
+//             </p>
+//             </div>`;
+//     },
+//     choices: function(){
+//         return [getKeys().yes];
+//     },
+//     trial_ends_after_response: true,
+//     post_trial_gap: 300,
+//     on_finish : function(data) {
+//         if (typeof data.rt === "number") {
+//             data.rt = Math.round(data.rt);
+//         }
+//     }
+// };
 
 function getTimeline(stimuli) {
 
@@ -292,21 +293,18 @@ function getTimeline(stimuli) {
         timeline.push(sound_test_instructions);
         timeline.push(test_audio_looped);
 
-        // kb layout
-        timeline.push(select_keyboard_layout);
+        // // kb important keys (keyboard.js)
+        // timeline.push(keyboard_set_key_left_procedure);
+        // timeline.push(keyboard_set_key_right_procedure);
 
-        // kb important keys (keyboard.js)
-        timeline.push(keyboard_set_key_left_procedure);
-        timeline.push(keyboard_set_key_right_procedure);
-
-        timeline.push(participant_keyboard_control_start);
+        // timeline.push(participant_keyboard_control_start);
     }
 
     timeline.push(browser_data);
 
+    timeline.push(camera_instructions);
+    timeline.push(init_camera);
     if (!short_version) {
-        timeline.push(camera_instructions);
-        timeline.push(init_camera);
         timeline.push(enter_fullscreen);
 
         timeline.push(calibration_instructions);
