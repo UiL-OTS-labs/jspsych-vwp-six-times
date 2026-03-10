@@ -29,3 +29,8 @@ function getListNum() {
     }
     return num;
 }
+
+function getShort() {
+    let short_version = getQueryStringParameter("short");
+    return Boolean(short_version);
+}

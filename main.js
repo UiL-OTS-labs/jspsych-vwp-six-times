@@ -1,3 +1,5 @@
+"use strict";
+
 let jsPsych = initJsPsych({
     override_safe_mode : true,
     extensions: [
@@ -29,21 +31,14 @@ let enter_fullscreen = {
 
 let sound_test_instructions = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: `
-                <p>We will now play a test sound</p>
-             `,
-    choices: ['Got it'],
+    stimulus: TEST_SOUND_INSTRUCTION,
+    choices: [GOT_IT],
 }
 
 let camera_instructions = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: `
-                <p>In order to participate you must allow the experiment to use your camera.</p>
-                <p>You will be prompted to do this on the next screen.</p>
-                <p>If you do not wish to allow use of your camera, you cannot participate in this experiment.<p>
-                <p>It may take up to 30 seconds for the camera to initialize after you give permission.</p>
-             `,
-    choices: ['Got it'],
+    stimulus: CAMERA_INSTRUCTION,
+    choices: [GOT_IT],
 }
 
 let init_camera = {
@@ -52,12 +47,8 @@ let init_camera = {
 
 let calibration_instructions = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: `
-                <p>Now you'll calibrate the eye tracking, so that the software can use the image of your eyes to predict where you are looking.</p>
-                <p>You'll see a series of dots appear on the screen</p>
-                <p>Look at each dot as it appears on the screen, and keep looking until it disappears.</p>
-             `,
-    choices: ['Got it'],
+    stimulus: CALIBRATION_INSTRUCTION,
+    choices: [GOT_IT],
 }
 
 let calibration = {
@@ -71,11 +62,8 @@ let calibration = {
 
 let validation_instructions = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: `
-                <p>Now we'll measure the accuracy of the calibration.</p>
-                <p>Look at each dot as it appears on the screen, and keep looking until it disappears.</p>
-             `,
-    choices: ['Got it'],
+    stimulus: VALIDATION_INSTRUCTION,
+    choices: [GOT_IT],
     post_trial_gap: 1000
 }
 
@@ -119,12 +107,8 @@ let validation = {
 
 let recalibrate_instructions = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: `
-                <p>The accuracy of the calibration is a little lower than we'd like.</p>
-                <p>Let's try calibrating one more time.</p>
-                <p>Look at each dot as it appears on the screen, and keep looking until it disappears.</p>
-             `,
-    choices: ['OK'],
+    stimulus: RECALIBRATION_INSTRUCTION,
+    choices: [OK_BUTTON_TEXT],
 }
 
 let hide_dot = {
@@ -150,20 +134,18 @@ let recalibrate = {
 
 let calibration_done = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: `<p>Great, we're done with calibration!</p>`,
-    choices: ['OK']
+    stimulus: CALIBRATION_DONE_INSTRUCTION,
+    choices: [OK_BUTTON_TEXT]
 }
 
 let begin_practice = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: `<p>Instructions for the practice phase go here</p>
-               <p>Press any key to start.</p>`
+    stimulus: BEGIN_PRACTICE_INSTRUCTION,
 }
 
 let begin_test = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: `<p>Instructions for the test phase go here</p>
-               <p>Press any key to start.</p>`
+    stimulus: BEGIN_TEST_INSTRUCTION,
 }
 
 
@@ -171,7 +153,8 @@ let trial = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: jsPsych.timelineVariable('sound'),
     prompt: () => '<img id="image-stimulus" src="'+jsPsych.timelineVariable('image')+'"/>',
-    choices: () => Object.values(getKeys()),
+    choices: [],
+    trial_ends_after_audio: true,
     extensions: [
         {
             type: jsPsychExtensionWebgazer,
@@ -183,7 +166,7 @@ let trial = {
         data.item_type = jsPsych.timelineVariable('item_type');
         data.image = jsPsych.timelineVariable('image');
         data.sound = jsPsych.timelineVariable('sound');
-        data.answer = data.response.toLowerCase() == getKeys().yes.toLowerCase();
+        data.answer = data.response;
         data.correct = data.answer == jsPsych.timelineVariable('expected_answer');
         data.bias_onset = jsPsych.timelineVariable('bias_onset');
     },
@@ -194,8 +177,7 @@ let trial = {
 let start_screen = {
     type: jsPsychHtmlButtonResponse,
     stimulus: function() {
-        return "<div class='instruction' >" +
-               "<p>Initial instructions go here</p></div>";
+        return START_SCREEN_INSTRUCTION; 
     },
     choices: [OK_BUTTON_TEXT],
     response_ends_trial: true
@@ -204,10 +186,10 @@ let start_screen = {
 let feedback_screen = {
     type: jsPsychSurveyText,
     data_saved: undefined, // true or false after upload succeeds/fails
-    preamble: '<p>The experiment is now complete. <strong>Please do not close this window yet.</strong></p>',
+    preamble: FEEDBACK_SCREEN_INSTRUCTION,
     questions: [
         {
-            prompt: 'Do you have any further comments or feedback about the experiment? If not, please leave empty',
+            prompt: FEEDBACK_PROMPT,
             rows: 5
         },
     ],
@@ -230,12 +212,8 @@ let save_local = {
     type: jsPsychHtmlButtonResponse,
     name: "",
     stimulus: function () {
-        let msg = `<h1>Unable to save data</h1>`;
-        msg += `<p>The data is saved in your downloads folder: as <b>${save_local.name}</b></p>`;
-        msg += `<p>Please send this file to the instructor</p>`;
-        msg += `<p>Press the ok button to continue</p>`;
-
-        return msg
+        return SAVE_LOCAL_INSTRUCTION_1 + `${save_local.name}` +
+               SAVE_LOCAL_INSTRUCTION_2;
     },
     on_load : function () {
         save_local.name = "UnsavedData.json"
@@ -277,55 +255,56 @@ function getKeys()
     };
 }
 
-let participant_keyboard_control_start = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: function(){
-        return `<div class="instruction">
-            <p>Instruct the participant about questions and how to answer using the keyboard</p>
-            <p>
-                Hit your <kbd>${getKeys().yes}</kbd> key (<i>'yes'</i>) to start.
-            </p>
-            </div>`;
-    },
-    choices: function(){
-        return [getKeys().yes];
-    },
-    trial_ends_after_response: true,
-    post_trial_gap: 300,
-    on_finish : function(data) {
-        if (typeof data.rt === "number") {
-            data.rt = Math.round(data.rt);
-        }
-    }
-};
+// let participant_keyboard_control_start = {
+//     type: jsPsychHtmlKeyboardResponse,
+//     stimulus: function(){
+//         return `<div class="instruction">
+//             <p>Instruct the participant about questions and how to answer using the keyboard</p>
+//             <p>
+//                 Hit your <kbd>${getKeys().yes}</kbd> key (<i>'yes'</i>) to start.
+//             </p>
+//             </div>`;
+//     },
+//     choices: function(){
+//         return [getKeys().yes];
+//     },
+//     trial_ends_after_response: true,
+//     post_trial_gap: 300,
+//     on_finish : function(data) {
+//         if (typeof data.rt === "number") {
+//             data.rt = Math.round(data.rt);
+//         }
+//     }
+// };
 
 function getTimeline(stimuli) {
 
-    let short_version = getQueryStringParameter("short");
+    let short_version = getShort();
+
     let timeline = [];
 
     timeline.push(preload);
     timeline.push(start_screen);
 
-    if (! short_version) {
+    if (!short_version) {
         timeline.push(consent_procedure);
         timeline.push(survey_procedure);
 
         timeline.push(sound_test_instructions);
         timeline.push(test_audio_looped);
 
-        // kb layout
-        timeline.push(select_keyboard_layout);
+        // // kb important keys (keyboard.js)
+        // timeline.push(keyboard_set_key_left_procedure);
+        // timeline.push(keyboard_set_key_right_procedure);
 
-        // kb important keys (keyboard.js)
-        timeline.push(keyboard_set_key_left_procedure);
-        timeline.push(keyboard_set_key_right_procedure);
+        // timeline.push(participant_keyboard_control_start);
+    }
 
-        timeline.push(participant_keyboard_control_start);
+    timeline.push(browser_data);
 
-        timeline.push(browser_data);
-        timeline.push(camera_instructions);
-        timeline.push(init_camera);
+    timeline.push(camera_instructions);
+    timeline.push(init_camera);
+    if (!short_version) {
         timeline.push(enter_fullscreen);
 
         timeline.push(calibration_instructions);
@@ -335,26 +314,26 @@ function getTimeline(stimuli) {
         timeline.push(hide_dot);
         timeline.push(recalibrate);
         timeline.push(calibration_done);
-
-        timeline.push(begin_practice);
-        let practice = {
-            timeline: [
-                trial
-            ],
-            timeline_variables: getPracticeItems().table,
-            randomize_order: false,
-        };
-        timeline.push(practice);
-
-        timeline.push(begin_test);
-        let test = {
-            timeline: [
-                trial,
-            ],
-            timeline_variables: stimuli.table
-        }
-        timeline.push(test);
     }
+
+    timeline.push(begin_practice);
+    let practice = {
+        timeline: [
+            trial
+        ],
+        timeline_variables: getPracticeItems().table,
+        randomize_order: false,
+    };
+    timeline.push(practice);
+
+    timeline.push(begin_test);
+    let test = {
+        timeline: [
+            trial,
+        ],
+        timeline_variables: stimuli.table
+    }
+    timeline.push(test);
 
     timeline.push(feedback_screen);
     timeline.push(test_manual_save_data);
@@ -379,7 +358,8 @@ function main() {
         session_id: session_id
     });
 
-    // TODO Remove this
+    // // TODO Remove this
+    // // Enable test at localhost:8001
     uil.useCustomServer("http://localhost:8001/api/");
 
     // Option 1: client side randomization:
@@ -411,7 +391,7 @@ function kickOffExperiment(stimuli, timeline) {
     if (PSEUDO_RANDOMIZE) {
         let shuffled = uil.randomization.randomizeStimuli(
             test_items,
-            max_same_type=MAX_SUCCEEDING_ITEMS_OF_TYPE
+            MAX_SUCCEEDING_ITEMS_OF_TYPE
         );
         if (shuffled !== null)
             test_items = shuffled;

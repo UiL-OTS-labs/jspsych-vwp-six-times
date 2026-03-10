@@ -1,0 +1,65 @@
+
+.stimulus {
+    font-size: 30px;
+    font-family: monospace;
+    font-weight: normal;
+}
+
+kbd {
+    border-radius: 2px;
+    padding: 2px;
+    border: 1px solid black;
+}
+
+/* UU-like Link styles */
+a {
+    color: rgb(33, 37, 41);
+    text-decoration: underline;
+    transition: 0.2s ease color;
+}
+
+a:hover {
+    transition: 0.2s ease color;
+    color: rgb(85, 85, 95);
+}
+
+span::after {
+    padding-left: 1%;
+}
+
+/* valid input feedback (survey) */
+
+input:invalid + span::after {
+    content: '✖';
+}
+
+input:valid+span::after {
+    content: '✓';
+}
+#calibration-point {
+    background: purple !important;
+    border:0px !important;
+    animation:expand;
+    animation-duration:1.2s;
+}
+
+.validation-point {
+    background: purple !important;
+    border:0px !important;
+    animation:expand;
+    animation-duration:1.2s;
+}
+
+@keyframes expand {
+    from {
+        transform:scale(3);
+    }
+    to {
+        transform:scale(1);
+    }
+}
+
+.no-cursor {
+    cursor: none;
+}
+
