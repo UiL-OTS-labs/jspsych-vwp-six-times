@@ -21,7 +21,7 @@ let preload = {
 
 let browser_data = {
     type: jsPsychCallFunction,
-    func: () => {uil.browser.getResolutionInfo()}
+    func: () => uil.browser.getResolutionInfo()
 };
 
 let enter_fullscreen = {
@@ -216,7 +216,6 @@ let save_local = {
                SAVE_LOCAL_INSTRUCTION_2;
     },
     on_load : function () {
-        save_local.name = "UnsavedData.json"
         jsPsych.data.get().localSave("json", save_local.name);
     },
     choices: [OK_BUTTON_TEXT],
@@ -225,7 +224,7 @@ let save_local = {
 let test_manual_save_data = {
     timeline : [ save_local ],
     conditional_function: function () {
-        return feedback_screen.data_saved !== false;
+        return feedback_screen.data_saved === false;
     }
 }
 
@@ -381,10 +380,11 @@ function main() {
 }
 
 // this function will eventually run the jsPsych timeline
-function kickOffExperiment(stimuli, timeline) {
+function kickOffExperiment(stimuli, timeline, sessionId) {
 
     let subject_id = uil.session.isActive() ?
         uil.session.subjectId() : jsPsych.randomization.randomID(8);
+    save_local.name = `Data-${subject_id}.json`
     let test_items = stimuli.table;
     let list_name = stimuli.list_name;
 
