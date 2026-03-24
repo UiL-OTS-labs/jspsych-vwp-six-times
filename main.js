@@ -235,7 +235,7 @@ let end_experiment = {
     choices : [],
     trial_duration: 5000,
     on_finish: function() {
-        location.href = PROLIFIC_COMPLETION_URL;
+        location.href = "completion.html";
     }
 };
 
@@ -287,7 +287,6 @@ function getTimeline(stimuli) {
     timeline.push(start_screen);
 
     if (!short_version) {
-        timeline.push(consent_procedure);
         timeline.push(survey_procedure);
 
         timeline.push(sound_test_instructions);
