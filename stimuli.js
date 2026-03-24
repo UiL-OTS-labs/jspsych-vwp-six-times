@@ -2,9 +2,10 @@
 // STIMULI
 ///////////////
 
-// Item types
-const PRACTICE = "PRACTICE";
-const TARGET = "TARGET";
+
+const LEFT = "left";
+const RIGHT = "right";
+const AMB = "ambiguous";
 
 // name for lists, in this case one list, one item in the list
 const LISTS = [
@@ -22,32 +23,9 @@ const PRACTICE_ITEMS = [
         image: './img/ChurchTableNecklaceRing.jpg',
         sound: './sounds/BlinktEenKettingGras.wav',
         bias_onset: 1234, // After 1234 ms the sentence should cause a bias in looking behavior
-        expected_answer: true
+        expected_answer: true,
     },
 ];
-
-const LIST_1 = [
-    {
-        id: 2,
-        item_type: TARGET,
-        image: './img/TaartPlantPlasDiamant.jpg',
-        sound: './sounds/LigtEenPlasVeld.wav',
-        bias_onset: 1234, // After 1234 ms the sentence should cause a bias in looking behavior
-        expected_answer: false
-    },
-    {
-        id: 3,
-        item_type: TARGET,
-        image: './img/BookCraddlePlantWheel.jpg',
-        sound: './sounds/LigtEenWielKamer.wav',
-        bias_onset: 1234, // After 1234 ms the sentence should cause a bias in looking behavior
-        expected_answer: true
-    },
-];
-
-const LIST_2 = []; // To be filled in.
-const LIST_3 = []; // To be filled in.
-const LIST_4 = []; // To be filled in.
 
 const TEST_ITEMS = [
     {list_name: LISTS[0], table: LIST_1},

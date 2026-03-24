@@ -3,7 +3,8 @@
 ///////////////
 
 // ACCESS_KEY needs to be used for server setup (data store)
-const ACCESS_KEY = '00000000-0000-0000-0000-000000000000';
+// const ACCESS_KEY = '00000000-0000-0000-0000-000000000000';
+const ACCESS_KEY = 'a48ec089-6c39-4f76-b29f-2302222049cd';
 
 //RANDOMIZATION
 
@@ -43,6 +44,6 @@ const CALIBRATION_POINTS =  [[25,25],[50,25],[75,25],[25,50],[50,50],[75,50],[25
 // For more calibration options, look for the 'calibrate' trial in main.js
 // and the jsPsych documentation: https://www.jspsych.org/7.1/plugins/webgazer-calibrate/
 
-
-// Prolific
-const PROLIFIC_COMPLETION_URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+// Item types add more types here when desired.
+const PRACTICE = "PRACTICE";
+const TARGET = "TARGET";
