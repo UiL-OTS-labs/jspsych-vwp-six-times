@@ -345,16 +345,11 @@ function main() {
     // Make sure you have updated your key in globals.js
     uil.setAccessKey(ACCESS_KEY);
     uil.stopIfExperimentClosed();
-
-    // capture info from Prolific
-    var subject_id = jsPsych.data.getURLVariable('PROLIFIC_PID');
-    var study_id = jsPsych.data.getURLVariable('STUDY_ID');
-    var session_id = jsPsych.data.getURLVariable('SESSION_ID');
+    
+    uil.browser.rejectMobileOrTablet();
 
     jsPsych.data.addProperties({
-        subject_id: subject_id,
-        study_id: study_id,
-        session_id: session_id
+        list_num: getListNum() // may crash when ?list=n isn't a number or specified
     });
 
     // // TODO Remove this
@@ -408,7 +403,5 @@ function kickOffExperiment(stimuli, timeline, sessionId) {
         }
     );
 
-    // Start jsPsych when running on a Desktop or Laptop style pc.
-    uil.browser.rejectMobileOrTablet();
     jsPsych.run(timeline);
 }
