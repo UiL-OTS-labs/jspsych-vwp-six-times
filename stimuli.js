@@ -2,10 +2,9 @@
 // STIMULI
 ///////////////
 
-
-const LEFT = "left";
-const RIGHT = "right";
-const AMB = "ambiguous";
+// This files handles loading of stimuli
+// The tables for lists 1 - 4 are inst stimulin.js where n is the listnumber
+// The pratice table is in practice.js
 
 // name for lists, in this case one list, one item in the list
 const LISTS = [
@@ -13,18 +12,6 @@ const LISTS = [
     "2",
     "3",
     "4"
-];
-
-
-const PRACTICE_ITEMS = [
-    {
-        id: 1,
-        item_type: PRACTICE,
-        image: './img/ChurchTableNecklaceRing.jpg',
-        sound: './sounds/BlinktEenKettingGras.wav',
-        bias_onset: 1234, // After 1234 ms the sentence should cause a bias in looking behavior
-        expected_answer: true,
-    },
 ];
 
 const TEST_ITEMS = [

@@ -47,3 +47,8 @@ const CALIBRATION_POINTS =  [[25,25],[50,25],[75,25],[25,50],[50,50],[75,50],[25
 // Item types add more types here when desired.
 const PRACTICE = "PRACTICE";
 const TARGET = "TARGET";
+
+// The positions of the targets
+const LEFT = "left";
+const RIGHT = "right";
+const AMB = "ambiguous";
