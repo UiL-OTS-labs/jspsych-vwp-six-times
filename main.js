@@ -169,6 +169,7 @@ let trial = {
         data.answer = data.response;
         data.correct = data.answer == jsPsych.timelineVariable('expected_answer');
         data.bias_onset = jsPsych.timelineVariable('bias_onset');
+        data.target_pos = jsPsych.timelineVariable('target_pos');
     },
     css_classes: ['no-cursor']
 }

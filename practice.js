@@ -9,5 +9,6 @@ const PRACTICE_ITEMS = [
         sound: './sounds/BlinktEenKettingGras.wav',
         bias_onset: 1234, // After 1234 ms the sentence should cause a bias in looking behavior
         expected_answer: true,
+        target_pos: LEFT
     },
 ];

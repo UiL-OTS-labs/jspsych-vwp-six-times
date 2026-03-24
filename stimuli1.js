@@ -8,7 +8,8 @@ const LIST_1 = [
         image: './img/TaartPlantPlasDiamant.jpg',
         sound: './sounds/LigtEenPlasVeld.wav',
         bias_onset: 1234, // After 1234 ms the sentence should cause a bias in looking behavior
-        expected_answer: false
+        expected_answer: false,
+        target_pos: RIGHT
     },
     {
         id: 3,
@@ -16,6 +17,7 @@ const LIST_1 = [
         image: './img/BookCraddlePlantWheel.jpg',
         sound: './sounds/LigtEenWielKamer.wav',
         bias_onset: 1234, // After 1234 ms the sentence should cause a bias in looking behavior
-        expected_answer: true
+        expected_answer: true,
+        target_pos: AMB, // ambiguous
     },
 ];
