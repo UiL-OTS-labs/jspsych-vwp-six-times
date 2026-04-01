@@ -19,15 +19,28 @@ let preload = {
     images: [],
 }
 
-let browser_data = {
+let browser_data_before = {
     type: jsPsychCallFunction,
-    func: () => uil.browser.getResolutionInfo()
+    func: () => {
+        let resolution_info = uil.browser.getResolutionInfo();
+        resolution_info.before_fullscreen = true;
+        return resolution_info;
+    }
 };
 
 let enter_fullscreen = {
     type: jsPsychFullscreen,
     fullscreen_mode: true
 }
+
+let browser_data_after = {
+    type: jsPsychCallFunction,
+    func: () => {
+        let resolution_info = uil.browser.getResolutionInfo();
+        resolution_info.before_fullscreen = false;
+        return resolution_info;
+    }
+};
 
 let sound_test_instructions = {
     type: jsPsychHtmlButtonResponse,
@@ -299,12 +312,13 @@ function getTimeline(stimuli) {
         // timeline.push(participant_keyboard_control_start);
     }
 
-    timeline.push(browser_data);
-
     timeline.push(camera_instructions);
     timeline.push(init_camera);
+    timeline.push(browser_data_before);
+    timeline.push(enter_fullscreen);
+    timeline.push(browser_data_after);
+
     if (!short_version) {
-        timeline.push(enter_fullscreen);
 
         timeline.push(calibration_instructions);
         timeline.push(calibration);
