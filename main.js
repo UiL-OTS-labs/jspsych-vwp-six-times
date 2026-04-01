@@ -366,9 +366,9 @@ function main() {
         list_num: getListNum() // may crash when ?list=n isn't a number or specified
     });
 
-    // // TODO Remove this
-    // // Enable test at localhost:8001
-    uil.useCustomServer("http://localhost:8001/api/");
+    // // // TODO Remove this
+    // // // Enable test at localhost:8001
+    // uil.useCustomServer("http://localhost:8001/api/");
 
     // Option 1: client side randomization:
     // let stimuli = pickRandomList();
