@@ -18,9 +18,12 @@ let survey_1 = {
         </div>
     </div>
     <div style="margin: 20px">
-        <button class="jspsych-btn">Continue</button>
+        <button class="jspsych-btn">Ga door</button>
     </div>
     `,
+    reviewPrompt: "<h4>Klopt dit?</h4>",
+    ok: "Dit klopt",
+    cancel: "Verander",
     exclusion: function(data) {
         // return true when participant should be excluded
         // there are currently no exclusion criteria

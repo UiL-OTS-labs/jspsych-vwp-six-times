@@ -243,44 +243,6 @@ let end_experiment = {
     }
 };
 
-
-function getKeys()
-{
-    if (participant_info.hand_pref === ParticipantInfo.RIGHT) {
-        return {
-            yes: KEYBOARD_DEFAULTS[chosen_keyboard].right_key,
-            no: KEYBOARD_DEFAULTS[chosen_keyboard].left_key
-        };
-    }
-
-    return {
-        no: KEYBOARD_DEFAULTS[chosen_keyboard].right_key,
-        yes: KEYBOARD_DEFAULTS[chosen_keyboard].left_key
-    };
-}
-
-// let participant_keyboard_control_start = {
-//     type: jsPsychHtmlKeyboardResponse,
-//     stimulus: function(){
-//         return `<div class="instruction">
-//             <p>Instruct the participant about questions and how to answer using the keyboard</p>
-//             <p>
-//                 Hit your <kbd>${getKeys().yes}</kbd> key (<i>'yes'</i>) to start.
-//             </p>
-//             </div>`;
-//     },
-//     choices: function(){
-//         return [getKeys().yes];
-//     },
-//     trial_ends_after_response: true,
-//     post_trial_gap: 300,
-//     on_finish : function(data) {
-//         if (typeof data.rt === "number") {
-//             data.rt = Math.round(data.rt);
-//         }
-//     }
-// };
-
 function getTimeline(stimuli) {
 
     let short_version = getShort();
