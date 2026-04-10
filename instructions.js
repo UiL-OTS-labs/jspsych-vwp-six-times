@@ -1,7 +1,10 @@
 
-const GOT_IT = "Got it";
+const GOT_IT = "Begrepen";
 
-const TEST_SOUND_INSTRUCTION =  `<p>We will now play a test sound</p>`;
+const TEST_SOUND_INSTRUCTION =  `<p>
+    We gaan nu het geluid een keertje testen.
+    Draag vanaf nu <b>oordopjes of een koptelefoon</b> tijdens de rest van dit taakje.
+  </p>`;
 
 const CAMERA_INSTRUCTION = `
     <p>In order to participate you must allow the experiment to use your camera.</p>

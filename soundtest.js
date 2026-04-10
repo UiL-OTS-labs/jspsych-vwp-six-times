@@ -5,10 +5,15 @@
 const AUDIO_PATH = './sounds/'; //currently not used!
 
 const AUDIO_CHECK_PROMPT_TEXT_LOOP = `
-    You can play the test sound again
-    (and adjust the audio level for your headpones).
-    If you're comfortable, click 'continue'...
-    `
+    <p>
+        Je kan nu nogmaals naar het geluid luisteren en het volume van je koptelefoon of
+        oortjes harder of zachter zetten.
+    </p>
+    <p></p>
+    <p>
+        Als je het goed kan verstaan, mag je door klikken
+    </p>
+    `;
 
 // audio test procedure
 
@@ -19,7 +24,7 @@ let test_audio_looped = {
             {
                 type: jsPsychAudioButtonResponse,
                 stimulus: './sounds/beep.mp3',
-                choices: ['Play Again', 'Continue'],
+                choices: ['Luister opnieuw', 'Ga door'],
                 prompt: function(){
                     return "<div class='instruction' >" +
                         '<p>' + AUDIO_CHECK_PROMPT_TEXT_LOOP + '</p></div>'
