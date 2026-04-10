@@ -4,12 +4,13 @@
 
 // ACCESS_KEY needs to be used for server setup (data store)
 // const ACCESS_KEY = '00000000-0000-0000-0000-000000000000';
-const ACCESS_KEY = 'acfcdc61-481a-4907-9689-4e3e7f3ce04e';
+let ACCESS_KEY = 'acfcdc61-481a-4907-9689-4e3e7f3ce04e';
 
 //RANDOMIZATION
 
 // Whether or not to pseudorandomize the test items
-const PSEUDO_RANDOMIZE = true;
+const PSEUDO_RANDOMIZE = false;
+
 // The maximum number of items with a similar itemtype in a row
 const MAX_SUCCEEDING_ITEMS_OF_TYPE = 2;
 

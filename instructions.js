@@ -40,10 +40,6 @@ const BEGIN_TEST_INSTRUCTION = `
     <p>Press any key to start.</p>
     `;
 
-const START_SCREEN_INSTRUCTION = 
-    "<div class='instruction' >" +
-    "<p>Initial instructions go here</p></div>";
-
 const FEEDBACK_SCREEN_INSTRUCTION = `<p>The experiment is now complete.
     <strong>Please do not close this window yet.</strong></p>`;
 

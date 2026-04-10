@@ -32,5 +32,10 @@ function getListNum() {
 
 function getShort() {
     let short_version = getQueryStringParameter("short");
-    return Boolean(short_version);
+    return short_version === "true";
+}
+
+function isDevelopmentRun() {
+    let develop = getQueryStringParameter("develop");
+    return develop === "true"
 }

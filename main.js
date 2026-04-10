@@ -346,6 +346,9 @@ function getTimeline(stimuli) {
 }
 
 function main() {
+
+    setupForDevelopment();
+
     // Make sure you have updated your key in globals.js
     uil.setAccessKey(ACCESS_KEY);
     uil.stopIfExperimentClosed();
@@ -356,8 +359,6 @@ function main() {
         list_num: getListNum() // may crash when ?list=n isn't a number or specified
     });
 
-    // // Enable test at localhost:8001
-    // uil.useCustomServer("http://localhost:8001/api/");
 
     // Option 1: client side randomization:
     // let stimuli = pickRandomList();
