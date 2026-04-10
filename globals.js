@@ -22,17 +22,17 @@ const FEEDBACK_DURATION = 1000;
 
 // Defaults for buttons
 const OK_BUTTON_TEXT = "OK";
-const YES_BUTTON_TEXT = "Yes";
-const NO_BUTTON_TEXT = "No";
-const TRUE_BUTTON_TEXT = "True";
-const FALSE_BUTTON_TEXT = "False";
+const YES_BUTTON_TEXT = "Ja";
+const NO_BUTTON_TEXT = "Nee";
+const TRUE_BUTTON_TEXT = "Waar";
+const FALSE_BUTTON_TEXT = "Niet waar";
 
 // Default restrictions of minimal browser dimensions
 const MIN_WIDTH = 800;
 const MIN_HEIGHT = 600;
 
 // Bail out string for mobiles
-const BAIL_OUT_MOBILE_TEXT = "Please run this experiment on a PC or Laptop."
+const BAIL_OUT_MOBILE_TEXT = "Draai dit experiment op en pc of laptop"
 
 // Set this to true if you want participants to click on the calibration points
 // during the calibration phase:
