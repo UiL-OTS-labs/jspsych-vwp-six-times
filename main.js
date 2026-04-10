@@ -188,15 +188,6 @@ let trial = {
 }
 
 
-let start_screen = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: function() {
-        return START_SCREEN_INSTRUCTION; 
-    },
-    choices: [OK_BUTTON_TEXT],
-    response_ends_trial: true
-};
-
 let feedback_screen = {
     type: jsPsychSurveyText,
     data_saved: undefined, // true or false after upload succeeds/fails
@@ -297,7 +288,6 @@ function getTimeline(stimuli) {
     let timeline = [];
 
     timeline.push(preload);
-    timeline.push(start_screen);
 
     if (!short_version) {
         timeline.push(survey_procedure);
@@ -366,8 +356,7 @@ function main() {
         list_num: getListNum() // may crash when ?list=n isn't a number or specified
     });
 
-    // // // TODO Remove this
-    // // // Enable test at localhost:8001
+    // // Enable test at localhost:8001
     // uil.useCustomServer("http://localhost:8001/api/");
 
     // Option 1: client side randomization:
