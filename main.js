@@ -30,8 +30,10 @@ let browser_data_before = {
 
 let enter_fullscreen = {
     type: jsPsychFullscreen,
-    fullscreen_mode: true
-}
+    fullscreen_mode: true,
+    message: FULLSCREEN_INSTRUCTION,
+    button_label: GOT_IT,
+};
 
 let browser_data_after = {
     type: jsPsychCallFunction,
@@ -55,7 +57,9 @@ let camera_instructions = {
 }
 
 let init_camera = {
-    type: jsPsychWebgazerInitCamera
+    type: jsPsychWebgazerInitCamera,
+    instructions: CAMERA_INIT_INSTRUCTION,
+    button_text: GOT_IT
 }
 
 let calibration_instructions = {
@@ -209,7 +213,8 @@ let feedback_screen = {
             ...jsPsych.data.dataProperties // adds subject id and list info
         }
         uil.saveJson(JSON.stringify(payload), ACCESS_KEY);
-    }
+    },
+    button_label: OK_BUTTON_TEXT, 
 };
 
 // Is ran when the data isn't saved correctly
@@ -235,7 +240,7 @@ let test_manual_save_data = {
 
 let end_experiment = {
     type : jsPsychHtmlKeyboardResponse,
-    stimulus : '<p>Thank you for participating, you will now be redirected to Prolific</p>',
+    stimulus : END_EXPERIMENT_INSTRUCTION,
     choices : [],
     trial_duration: 5000,
     on_finish: function() {
