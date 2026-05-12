@@ -11,7 +11,7 @@ const AUDIO_CHECK_PROMPT_TEXT_LOOP = `
     </p>
     <p></p>
     <p>
-        Als je het goed kan verstaan, mag je door klikken
+        Als je het goed kunt horen, mag je door klikken
     </p>
     `;
 

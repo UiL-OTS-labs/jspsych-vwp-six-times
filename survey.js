@@ -7,12 +7,12 @@ let repeat_survey = false;
 let survey_1 = {
     type: IlsSurveyPlugin,
     fields: {
-        pp_number: {label: 'Proefpersoon nummer'},
+        pp_number: {label: 'Proefpersoonnummer'},
     },
     html: `
-    <h4>Vul hier svp je proefpersoon nummer in</h4>
+    <h4>Vul hier alsjeblieft je <b>proefpersoonnummer</b> in</h4>
     <div style="text-align: left">
-	    <p>Wat is je proefpersoon nummer?</p>
+	    <p>Wat is je proefpersoonnummer?</p>
         <div>
             <input type="number" name="pp_number" required>
         </div>

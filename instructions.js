@@ -1,5 +1,5 @@
 
-const GOT_IT = "Begrepen";
+const GOT_IT = "begrepen";
 
 const TEST_SOUND_INSTRUCTION =  `<p>
     We gaan nu het geluid een keertje testen.
@@ -20,7 +20,7 @@ const CAMERA_INSTRUCTION = `
 const CAMERA_INIT_INSTRUCTION = `
     <p>Probeer je hoofd op de goede plaats te houden zodat de webcam je ogen ook goed kan zien.</p>
     <p>
-        Houd je gezicht in het midden in het vakje en kijk recht naar de camera. Het is
+        Houd je gezicht in het midden van het vakje en kijk recht naar de camera. Het is
         heel belangrijk dat je je hoofd goed stil probeert te houden tijdens het taakje.
         Ga er daarom goed voor zitten en neem je tijd om een fijne houding aan te nemen.
         Als je je gezicht op de goede plaats houdt, wordt het vakje groen.
@@ -41,7 +41,7 @@ const CALIBRATION_INSTRUCTION = `
 
 const VALIDATION_INSTRUCTION = `
     <p>Nu berekenen we of de kalibratie goed verlopen is.</p>
-    <p>Kijk wederom goed naar iedere punt als deze op het scher verschijnt
+    <p>Kijk wederom goed naar iedere punt als deze op het scherm verschijnt
     en blijf er naar kijken totdat de punt weer verdwijnt.</p>`;
 
 const RECALIBRATION_INSTRUCTION = `
@@ -56,15 +56,17 @@ const CALIBRATION_DONE_INSTRUCTION = `<p>Super, we zijn klaar met de kalibratie!
 
 const BEGIN_PRACTICE_INSTRUCTION = `
     <p>We beginnen eerst met een oefengedeelte.</p>
-    <p>Druk op een willekeurige knop om te beginnen.</p>`;
+    <p>Kijk goed naar <b>het plaatje dat bij de zin hoort.</b>
+    <p>Druk op een willekeurige toets om te beginnen.</p>`;
 
 const BEGIN_TEST_INSTRUCTION = `
     <p>Nu gaat het echte taakje beginnen.</p>
-    <p>Druk op een willekeurige knop om te beginnen.</p>
+    <p>Kijk goed naar <b>het plaatje dat bij de zin hoort.</b>
+    <p>Druk op een willekeurige toets om te beginnen.</p>
     `;
 
 const FEEDBACK_SCREEN_INSTRUCTION = `<p>
-    Het taakje is klaar, <strong>maar sluit het tabblad niet af</strong>.
+    Het taakje is nu klaar, <strong>maar sluit het tabblad niet af</strong>.
     </p>`;
 
 const FEEDBACK_PROMPT = `Heb je nog aan- of opmerkingen over het experiment?

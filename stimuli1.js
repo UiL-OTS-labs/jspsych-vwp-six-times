@@ -5,28 +5,289 @@ const LIST_1 = [
     {
         id: 2,
         item_type: TARGET,
-        image: './img/slide1.png',
-        sound: './sounds/media3.flac',
-        bias_onset: 4000, // After 4000 ms the sentence should cause a bias in looking behavior
+        image: './img/01e.png',
+        sound: './sounds/amb_R_die_banane_fangt_mia.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: false,
+        target_pos: AMB
+    },  
+    {
+        id: 3,
+        item_type: TARGET,
+        image: './img/02e.png',
+        sound: './sounds/mkd_R_den_konig_sieht_johann.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
         expected_answer: false,
         target_pos: RIGHT
     },
     {
-        id: 3,
+        id: 4,
         item_type: TARGET,
-        image: './img/slide2.png',
-        sound: './sounds/media7.flac',
-        bias_onset: 4000, // After 4000 ms the sentence should cause a bias in looking behavior
+        image: './img/03e.png',
+        sound: './sounds/amb_R_die_taube_liebt_mia.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
         expected_answer: true,
         target_pos: AMB, // ambiguous
     },
     {
-        id: 4,
+        id: 5,
         item_type: TARGET,
-        image: './img/slide2.png',
-        sound: './sounds/media11.flac',
-        bias_onset: 4000, // After 4000 ms the sentence should cause a bias in looking behavior
+        image: './img/04e.png',
+        sound: './sounds/mkd_L_johann_schlagt_der_flamingo.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
         expected_answer: true,
-        target_pos: AMB, // ambiguous
+        target_pos: LEFT
+    },
+        {
+        id: 6,
+        item_type: TARGET,
+        image: './img/05e.png',
+        sound: './sounds/amb_R_die_aubergine_verfolgt_mia.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: AMB
+    },
+        {
+        id: 7,
+        item_type: TARGET,
+        image: './img/06e.png',
+        sound: './sounds/mkd_R_der_tiger_sieht_johann.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: RIGHT
+    },
+        {
+        id: 8,
+        item_type: TARGET,
+        image: './img/07e.png',
+        sound: './sounds/mkd_R_mia_schlagt_der_otter.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: RIGHT
+    },
+        {
+        id: 9,
+        item_type: TARGET,
+        image: './img/08e.png',
+        sound: './sounds/amb_L_die_eule_fangt_mia.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: AMB
+    },
+        {
+        id: 10,
+        item_type: TARGET,
+        image: './img/09e.png',
+        sound: './sounds/amb_R_johann_schlagt_die_buche.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: AMB
+    },
+        {
+        id: 11,
+        item_type: TARGET,
+        image: './img/10e.png',
+        sound: './sounds/mkd_L_der_hase_sieht_mia.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: LEFT
+    },
+        {
+        id: 12,
+        item_type: TARGET,
+        image: './img/11e.png',
+        sound: './sounds/amb_L_johann_verfolgt_die_antilope.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: AMB
+    },
+        {
+        id: 13,
+        item_type: TARGET,
+        image: './img/12e.png',
+        sound: './sounds/amb_R_mia_fangt_die_anakonda.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: AMB
+    },
+        {
+        id: 14,
+        item_type: TARGET,
+        image: './img/13e.png',
+        sound: './sounds/mkd_L_den_orca_liebt_johann.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: LEFT
+    },
+        {
+        id: 15,
+        item_type: TARGET,
+        image: './img/14e.png',
+        sound: './sounds/amb_R_mia_schlagt_die_narzisse.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: AMB
+    },
+        {
+        id: 16,
+        item_type: TARGET,
+        image: './img/15e.png',
+        sound: './sounds/mkd_L_den_stern_verfolgt_mia.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: LEFT
+    },
+        {
+        id: 17,
+        item_type: TARGET,
+        image: './img/16e.png',
+        sound: './sounds/amb_L_die_maus_sieht_johann.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: AMB
+    },
+        {
+        id: 18,
+        item_type: TARGET,
+        image: './img/17e.png',
+        sound: './sounds/mkd_L_mia_verfolgt_der_schwan.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: LEFT
+    },
+        {
+        id: 19,
+        item_type: TARGET,
+        image: './img/18e.png',
+        sound: './sounds/mkd_R_der_panda_sieht_johann.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: LEFT
+    },    
+        {
+        id: 20,
+        item_type: TARGET,
+        image: './img/19e.png',
+        sound: './sounds/amb_L_die_biene_liebt_johann.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: AMB
+    },
+        {
+        id: 21,
+        item_type: TARGET,
+        image: './img/20e.png',
+        sound: './sounds/mkd_R_johann_fangt_den_elefant.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: RIGHT
+    },
+      {
+        id: 22,
+        item_type: TARGET,
+        image: './img/21e.png',
+        sound: './sounds/mkd_R_johann_schlagt_der_fisch.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: RIGHT
+    },
+        {
+        id: 23,
+        item_type: TARGET,
+        image: './img/22e.png',
+        sound: './sounds/amb_L_die_hyane_liebt_mia.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: AMB
+    },
+        {
+        id: 24,
+        item_type: TARGET,
+        image: './img/23e.png',
+        sound: './sounds/mkd_R_johann_verfolgt_der_piranha.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: RIGHT
+    },
+        {
+        id: 25,
+        item_type: TARGET,
+        image: './img/24e.png',
+        sound: './sounds/amb_R_mia_fangt_die_spinne.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: AMB
+    },
+        {
+        id: 26,
+        item_type: TARGET,
+        image: './img/25e.png',
+        sound: './sounds/mkd_L_mia_verfolgt_den_koala.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: LEFT
+    },
+        {
+        id: 27,
+        item_type: TARGET,
+        image: './img/26e.png',
+        sound: './sounds/amb_R_die_kaktee_liebt_mia.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: AMB
+    },
+        {
+        id: 28,
+        item_type: TARGET,
+        image: './img/27e.png',
+        sound: './sounds/amb_L_die_kuh_verfolgt_johann.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: AMB
+    },
+        {
+        id: 29,
+        item_type: TARGET,
+        image: './img/28e.png',
+        sound: './sounds/mkd_R_johann_liebt_den_delfin.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: RIGHT
+    },
+        {
+        id: 30,
+        item_type: TARGET,
+        image: './img/29e.png',
+        sound: './sounds/mkd_L_der_loffel_sieht_johann.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: LEFT
+    },
+        {
+        id: 31,
+        item_type: TARGET,
+        image: './img/30e.png',
+        sound: './sounds/mkd_R_den_pinguin_fangt_mia.wav',
+        bias_onset: 1000, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: RIGHT
+    },
+        {
+        id: 32,
+        item_type: TARGET,
+        image: './img/31e.png',
+        sound: './sounds/amb_R_johann_schlagt_die_konigin.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: AMB
+    },
+    {
+        id: 33,
+        item_type: TARGET,
+        image: './img/32e.png',
+        sound: './sounds/amb_L_johann_fangt_die_nachtigall.wav',
+        bias_onset: 3700, // After 4000 ms the sentence should cause a bias in looking behavior
+        expected_answer: true,
+        target_pos: AMB
     },
 ];
