@@ -4,7 +4,12 @@
 
 // ACCESS_KEY needs to be used for server setup (data store)
 // const ACCESS_KEY = '00000000-0000-0000-0000-000000000000';
-let ACCESS_KEY = 'acfcdc61-481a-4907-9689-4e3e7f3ce04e';
+
+// original
+// let ACCESS_KEY = 'acfcdc61-481a-4907-9689-4e3e7f3ce04e';
+
+// temp version
+ let ACCESS_KEY = '7a464785-2bff-40af-989d-560e4a9cf0c0';
 
 //RANDOMIZATION
 
